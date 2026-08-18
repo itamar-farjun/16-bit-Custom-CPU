@@ -7,6 +7,7 @@ Currently, the project is verified via simulation (Vivado) using a dedicated Tes
 
 ### Datapath & Block Diagram
 
+```mermaid
 graph TD
     %% Main Data Bus
     Bus["================== 16-bit Data Bus =================="]
