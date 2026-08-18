@@ -36,7 +36,7 @@ graph TD
     %% External Memory Interface
     MAR -->|Mem_Addr| RAM
     RAM <-->|Mem_Data_In / Out| MDR
-    CU -.->|Mem_Read / Mem_Write| RAM
+    CU -.->|Mem_Read / Mem_Write| RAM'''
 
 ## Architecture: Advantages and Disadvantages
 The CPU is based on a Multi-Cycle Von Neumann architecture. This design choice presents specific trade-offs:
