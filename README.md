@@ -5,6 +5,7 @@ This repository contains the VHDL implementation of a custom 16-bit Von Neumann 
 
 Currently, the project is verified via simulation (Vivado) using a dedicated Testbench, with hardware deployment planned for the near future.
 ### Datapath & Block Diagram
+
 ```mermaid
 graph TD
     %% Components
