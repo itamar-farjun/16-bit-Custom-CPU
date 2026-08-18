@@ -4,6 +4,39 @@
 This repository contains the VHDL implementation of a custom 16-bit Von Neumann RISC processor. Developed as an independent personal project out of a passion for computer architecture, it encompasses the complete logic design of the CPU core from scratch, including a custom Instruction Set Architecture (ISA), Control Unit (FSM), ALU, and Register File.
 
 Currently, the project is verified via simulation (Vivado) using a dedicated Testbench, with hardware deployment planned for the near future.
+### Datapath & Block Diagram
+```mermaid
+graph TD
+    %% Components
+    CU[Control Unit / FSM]
+    ALU[ALU]
+    RegFile[(Register File\n16 x 16-bit)]
+    PC[Program Counter]
+    IR[Instruction Register]
+    MAR[Memory Address Reg]
+    MDR[Memory Data Reg]
+    Bus{16-bit Data Bus}
+    RAM[(External RAM)]
+
+    %% Connections to internal Bus
+    PC -->|PC_Out| Bus
+    Bus -->|PC_In| PC
+    Bus -->|IR_In| IR
+    RegFile <-->|Data_In / Data_Out| Bus
+    ALU -->|ALU_Out| Bus
+    Bus -->|MAR_In| MAR
+    Bus <-->|MDR_In / MDR_Out| MDR
+
+    %% Specific Control & Routing
+    IR -->|Opcode| CU
+    IR -->|Imm / Addr| Bus
+    RegFile -->|A_In / B_In| ALU
+    ALU -.->|Z_Flag| CU
+
+    %% External Memory Interface
+    MAR -->|Mem_Addr| RAM
+    RAM <-->|Mem_Data_In / Out| MDR
+    CU -.->|Mem_Read / Mem_Write| RAM
 
 ## Architecture: Advantages and Disadvantages
 The CPU is based on a Multi-Cycle Von Neumann architecture. This design choice presents specific trade-offs:
