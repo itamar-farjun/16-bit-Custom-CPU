@@ -5,6 +5,40 @@ This repository contains the VHDL implementation of a custom 16-bit Von Neumann 
 
 Currently, the project is verified via simulation (Vivado) using a dedicated Testbench, with hardware deployment planned for the near future.
 
+### Datapath & Block Diagram
+
+```mermaid
+graph TD
+    CU["Control Unit (FSM)"]
+    ALU["ALU"]
+    RegFile["Register File"]
+    PC["Program Counter"]
+    IR["Instruction Register"]
+    MAR["Memory Address Reg"]
+    MDR["Memory Data Reg"]
+    Bus{"16-bit Data Bus"}
+    RAM["External RAM"]
+
+    PC -->|"PC_Out"| Bus
+    Bus -->|"PC_In"| PC
+    Bus -->|"IR_In"| IR
+    RegFile -->|"Data"| Bus
+    Bus -->|"Data"| RegFile
+    ALU -->|"ALU_Out"| Bus
+    Bus -->|"MAR_In"| MAR
+    Bus -->|"MDR_Data"| MDR
+    MDR -->|"MDR_Data"| Bus
+
+    IR -->|"Opcode"| CU
+    IR -->|"Imm/Addr"| Bus
+    RegFile -->|"A_In/B_In"| ALU
+    ALU -.->|"Z_Flag"| CU
+
+    MAR -->|"Mem_Addr"| RAM
+    RAM -->|"Data_In"| MDR
+    MDR -->|"Data_Out"| RAM
+    CU -.->|"Mem_Ctrl"| RAM
+
 ## Architecture: Advantages and Disadvantages
 The CPU is based on a Multi-Cycle Von Neumann architecture. This design choice presents specific trade-offs:
 
