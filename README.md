@@ -1,7 +1,7 @@
 # Custom 16-bit Multi-Cycle RISC CPU
 
 ## Overview
-This repository contains the VHDL implementation of a custom 16-bit Von Neumann RISC processor. The project encompasses the complete logic design of the CPU core, designed from scratch, including a custom Instruction Set Architecture (ISA), Control Unit (FSM), ALU, and Register File. 
+This repository contains the VHDL implementation of a custom 16-bit Von Neumann RISC processor. Developed as an independent personal project out of a passion for computer architecture, it encompasses the complete logic design of the CPU core from scratch, including a custom Instruction Set Architecture (ISA), Control Unit (FSM), ALU, and Register File.
 
 Currently, the project is verified via simulation (Vivado) using a dedicated Testbench, with hardware deployment planned for the near future.
 
